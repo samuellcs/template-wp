@@ -12,6 +12,14 @@
         <h2>Catálogo de Produtos</h2>
         <p>Explore nossa seleção exclusiva de produtos, cada um projetado para atender às suas necessidades específicas com excelência e inovação.</p>
     </div>
+    
+    <?php
+    while (have_posts()) :
+        the_post();
+        the_content();
+    endwhile;
+    ?>
+    
     <div id="wp-react-products-root"></div>
 </main>
 

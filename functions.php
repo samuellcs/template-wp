@@ -13,6 +13,10 @@ function wp_react_products_setup() {
         'gallery',
         'caption',
     ));
+    
+    // Suporte ao Elementor
+    add_theme_support('elementor');
+    add_theme_support('elementor-pro');
 }
 add_action('after_setup_theme', 'wp_react_products_setup');
 
@@ -49,7 +53,22 @@ function wp_react_products_register_post_types() {
         'public' => true,
         'has_archive' => true,
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
-        'menu_icon' => 'dashicons-products'
+        'menu_icon' => 'dashicons-products',
+        'show_in_rest' => true, // Habilita suporte ao editor Gutenberg
+        'elementor' => true, // Habilita suporte ao Elementor
     ));
 }
-add_action('init', 'wp_react_products_register_post_types'); 
+add_action('init', 'wp_react_products_register_post_types');
+
+// Adicionar suporte ao Elementor para o Custom Post Type
+function wp_react_products_elementor_support() {
+    add_post_type_support('produto', 'elementor');
+}
+add_action('init', 'wp_react_products_elementor_support');
+
+// Registrar áreas de widgets para o Elementor
+function wp_react_products_register_elementor_locations($elementor_theme_manager) {
+    $elementor_theme_manager->register_location('header');
+    $elementor_theme_manager->register_location('footer');
+}
+add_action('elementor/theme/register_locations', 'wp_react_products_register_elementor_locations'); 
