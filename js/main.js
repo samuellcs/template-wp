@@ -23,7 +23,6 @@ const App = () => {
 
     return (
         <div className="products-container">
-            <h1>Nossos Produtos</h1>
             <div className="products-grid">
                 {products.map(product => (
                     <ProductCard key={product.id} product={product} />
@@ -35,6 +34,9 @@ const App = () => {
 
 // Componente de card de produto
 const ProductCard = ({ product }) => {
+    // Extrair preço do conteúdo do produto (assumindo que está em um campo personalizado)
+    const price = product.meta?.price || 'R$ 0,00';
+    
     return (
         <div className="product-card">
             {product.featured_media && (
@@ -44,11 +46,16 @@ const ProductCard = ({ product }) => {
                     className="product-image"
                 />
             )}
+            <div className="product-price">{price}</div>
             <h2>{product.title.rendered}</h2>
             <div 
                 className="product-description"
                 dangerouslySetInnerHTML={{ __html: product.excerpt.rendered }}
             />
+            <div className="product-actions">
+                <button className="btn-primary">Ver Detalhes</button>
+                <button className="btn-secondary">Adicionar ao Carrinho</button>
+            </div>
         </div>
     );
 };

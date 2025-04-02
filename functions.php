@@ -18,6 +18,12 @@ add_action('after_setup_theme', 'wp_react_products_setup');
 
 // Registrar scripts e estilos
 function wp_react_products_scripts() {
+    // Font Awesome
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+    
+    // Google Fonts - Roboto
+    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    
     // React e ReactDOM
     wp_enqueue_script('react', 'https://unpkg.com/react@18/umd/react.production.min.js', array(), '18.0.0', true);
     wp_enqueue_script('react-dom', 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js', array('react'), '18.0.0', true);
